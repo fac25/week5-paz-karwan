@@ -1,9 +1,13 @@
+const Header = ({ username }) => {
+  return (
+    <header>
+      <nav>
+        <ul>
+          <li>Hi {username}</li>
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
-const Header = () => {
-    return (
-      <div>Header!</div>
-    )
-  }
-  
-  
-  export default Header
+export default Header;
