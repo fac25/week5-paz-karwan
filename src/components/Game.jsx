@@ -2,6 +2,21 @@ import { useState } from "react";
 
 const Game = () => {
   const [word, setWord] = useState("HELLO");
+  const [letters, setLetters] = useState(new Array(word.length).fill(""));
+
+  const splitWord = word.split("");
+
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    splitWord.map((letter, index) => {
+      if (!letters[index] && letter === e.target.textContent ) {
+        setLetters([...letters, (letters[index] = e.target.textContent)]);
+      } else {
+        setLetters([...letters]);
+      }
+    });
+  };
 
   return (
     <main>
@@ -9,11 +24,15 @@ const Game = () => {
 
       <div className="">
         <section className="letters">
-          {word.split("").map((letter) => {
-            return <span>_</span>;
+          {letters.map((letter, index) => {
+            return (
+              <span className="test" key={index}>
+                {letter}
+              </span>
+            );
           })}
         </section>
-        <section className="keyboard-layout">
+        <section className="keyboard-layout" onClick={handleChange}>
           <div className="row-1">
             <span>Q</span>
             <span>W</span>
