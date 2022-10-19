@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
 const Home = ({ handleNameChange }) => {
-  // function handleNameChange(e) {
-  //   e.preventDefault();
-  //   setUsername(e.target.value);
-  // }
   return (
     <div>
       <h1>Hangman</h1>

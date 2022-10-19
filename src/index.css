@@ -5,3 +5,10 @@
     list-style-type: none;
     text-decoration: none;
 }
+
+.test{
+    border-bottom: 1px solid black;
+    margin-right: 10px;
+    display: inline-block;
+    width: 1rem;
+}
