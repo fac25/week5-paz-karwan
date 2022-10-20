@@ -104,10 +104,6 @@ main label {
   }
 }
 
-.control-panel > :first-child {
-  display: none;
-}
-
 .keyboard-layout {
   display: flex;
   flex-direction: column;
