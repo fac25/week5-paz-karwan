@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 const Game = ({ word, randomWord }) => {
-  // generate random word
   const [letters, setLetters] = useState(Array(word.length).fill(null));
   const [chance, setChance] = useState(8);
   const [isWinner, setIsWinner] = useState(false);
@@ -63,7 +62,6 @@ const Game = ({ word, randomWord }) => {
     <main>
       <div className="game-container">
         <section className="control-panel">
-          <p>{word}</p>
           {isWinner ? (
             <h3>You won!</h3>
           ) : isLoser ? (
@@ -127,6 +125,15 @@ const Game = ({ word, randomWord }) => {
         {playAgain ? (
           <div className="modal center">
             <div className="modal-content">
+              <div>
+              {isWinner ? (
+            <h3>You won!</h3>
+          ) : isLoser ? (
+            <h3>You lost!</h3>
+          ) : (
+            ""
+          )}
+              </div>
               <h3>Want to play more?</h3>
               <button onClick={handlePlayAgain}>Play Again</button>
             </div>
