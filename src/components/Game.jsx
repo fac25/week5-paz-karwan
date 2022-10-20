@@ -7,6 +7,8 @@ const Game = ({ word, randomWord }) => {
   const [isLoser, setIsLooser] = useState(false);
   const [playAgain, setPlayAgain] = useState(false);
 
+  console.log(word)
+
   let checkLetters = letters;
 
   const splitWord = word.split("");
@@ -46,7 +48,6 @@ const Game = ({ word, randomWord }) => {
     disabledAllButtons(false);
   };
   useEffect(() => {
-    randomWord();
     if (letters.every((letter) => letter)) {
       setIsWinner(true);
       disabledAllButtons(true);
@@ -61,18 +62,16 @@ const Game = ({ word, randomWord }) => {
   return (
     <main>
       <div className="game-container">
-        <section className="control-panel">
-          {isWinner ? (
-            <h3>You won!</h3>
-          ) : isLoser ? (
-            <h3>You lost!</h3>
-          ) : (
-            <p>
-              You have <span className="bold">{chance}</span> tries left{" "}
-            </p>
-          )}
-        </section>
 
+      <section>
+        {isWinner ? (
+          <h3>You won!</h3>
+        ) : isLoser ? (
+          <h3>You lost!</h3>
+        ) : (
+          <p>You have {chance} tries left </p>
+        )}
+      </section>
         <div className="">
           <section className="letters">
             {letters.map((letter, index) => {
@@ -129,7 +128,10 @@ const Game = ({ word, randomWord }) => {
               {isWinner ? (
             <h3>You won!</h3>
           ) : isLoser ? (
-            <h3>You lost!</h3>
+            <div>
+              <h3>You lost!</h3>
+              <p>The word was: {word}</p>
+              </div>
           ) : (
             ""
           )}
