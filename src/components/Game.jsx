@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import { useActionData } from "react-router-dom";
 
 const Game = () => {
-  const word = "HELLO"
+  const word = "HELLO";
+  // generate random word
   const [letters, setLetters] = useState(Array(word.length).fill(null));
   const [chance, setChance] = useState(8);
   const [isWinner, setIsWinner] = useState(false);
   const [isLoser, setIsLooser] = useState(false);
+  const [playAgain, setPlayAgain] = useState(false);
 
   let checkLetters = letters;
 
@@ -28,26 +31,44 @@ const Game = () => {
     });
   };
 
-  const disableAllButtons = () => {
+  // const disabledAllButtons = (bool) => {
+  //   const allButtons = document
+  //     .getElementById("keyboard")
+  //     .querySelectorAll("button");
+  //   allButtons.forEach((button) => {
+  //     button.disabled = bool;
+  //   });
+  //   setPlayAgain(true)
+  //   //  bool ? setPlayAgain(true) : "";
+  // };
+  const disabledAllButtons = (bool) => {
     const allButtons = document
       .getElementById("keyboard")
       .querySelectorAll("button");
     allButtons.forEach((button) => {
-      button.disabled = true;
+      button.disabled = bool;
     });
+    bool ? setPlayAgain(true) : setPlayAgain(false);
   };
-
+  const handlePlayAgain = (e) => {
+    e.preventDefault();
+    setChance(8);
+    setLetters([""]);
+    setIsLooser(false);
+    setIsWinner(false);
+    disabledAllButtons(false);
+  };
   useEffect(() => {
     if (letters.every((letter) => letter)) {
       setIsWinner(true);
-      disableAllButtons();
+      disabledAllButtons(true);
     }
 
     if (chance === 0) {
       setIsLooser(true);
-      disableAllButtons();
+      disabledAllButtons(true);
     }
-  }, [letters, chance]);
+  }, [letters, chance, isLoser, isWinner, playAgain]);
 
   return (
     <main>
@@ -110,6 +131,14 @@ const Game = () => {
           </div>
         </section>
       </div>
+      {playAgain ? (
+        <div className="modal">
+          <h3>Want to play more?</h3>
+          <button onClick={handlePlayAgain}>Play Again</button>
+        </div>
+      ) : (
+        ""
+      )}
     </main>
   );
 };
