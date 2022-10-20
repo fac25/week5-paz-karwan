@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { useActionData } from "react-router-dom";
 
-const Game = () => {
-  const word = "HELLO";
+const Game = ({word}) => {
+
   // generate random word
   const [letters, setLetters] = useState(Array(word.length).fill(null));
   const [chance, setChance] = useState(8);
@@ -13,10 +12,10 @@ const Game = () => {
   let checkLetters = letters;
 
   const splitWord = word.split("");
+  console.log(splitWord)
 
   const handleChange = (e) => {
     e.preventDefault();
-
     e.target.disabled = true;
 
     if (!word.includes(e.target.textContent) && chance > 0) {
@@ -31,16 +30,6 @@ const Game = () => {
     });
   };
 
-  // const disabledAllButtons = (bool) => {
-  //   const allButtons = document
-  //     .getElementById("keyboard")
-  //     .querySelectorAll("button");
-  //   allButtons.forEach((button) => {
-  //     button.disabled = bool;
-  //   });
-  //   setPlayAgain(true)
-  //   //  bool ? setPlayAgain(true) : "";
-  // };
   const disabledAllButtons = (bool) => {
     const allButtons = document
       .getElementById("keyboard")
@@ -68,10 +57,11 @@ const Game = () => {
       setIsLooser(true);
       disabledAllButtons(true);
     }
-  }, [letters, chance, isLoser, isWinner, playAgain]);
+  }, [letters, chance]);
 
   return (
     <main>
+      <p>{word}</p>
       <section>
         {isWinner ? (
           <h3>You won!</h3>
