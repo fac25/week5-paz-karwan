@@ -1,9 +1,9 @@
-
 const Footer = () => {
-    return (
-      <div>Footer!</div>
-    )
-  }
-  
-  
-  export default Footer
+  return (
+    <footer>
+      <p>Hangman &#169; 2022</p>
+    </footer>
+  );
+};
+
+export default Footer;
