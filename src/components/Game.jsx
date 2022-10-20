@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 const Game = ({ word, randomWord }) => {
-  // generate random word
   const [letters, setLetters] = useState(Array(word.length).fill(null));
   const [chance, setChance] = useState(8);
   const [isWinner, setIsWinner] = useState(false);
