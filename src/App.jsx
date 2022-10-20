@@ -13,14 +13,16 @@ const App = () => {
   const [username, setUsername] = useState("");
   const [word, setWord] = useState("");
 
-  const random = Math.floor(Math.random() * data.length);
-
   const randomWord = () => {
+    const random = Math.floor(Math.random() * data.length);
+
     setWord(data[random].toUpperCase());
   };
 
   const handlePlay = (e) => {
     e.preventDefault();
+    const random = Math.floor(Math.random() * data.length);
+
     setUsername(document.getElementById("name").value);
     setWord(data[random].toUpperCase());
   };
