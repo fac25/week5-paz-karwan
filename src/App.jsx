@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
-import data from "./data.json";
+import db from "./data.json";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -9,13 +9,20 @@ import Game from "./components/Game";
 import Footer from "./components/Footer";
 
 const App = () => {
+  const data = db.words;
   const [username, setUsername] = useState("");
-  const random = Math.floor(Math.random() * data.words.length);
-    const word = data.words[random].toUpperCase();
+  const [word, setWord] = useState("");
+
+  const random = Math.floor(Math.random() * data.length);
+
+  const randomWord = () => {
+    setWord(data[random].toUpperCase());
+  };
 
   const handlePlay = (e) => {
     e.preventDefault();
     setUsername(document.getElementById("name").value);
+    setWord(data[random].toUpperCase());
   };
 
   return (
@@ -27,7 +34,10 @@ const App = () => {
             path="/"
             element={<Home handlePlay={handlePlay} username={username} />}
           />
-          <Route path="/game" element={<Game word={word} />} />
+          <Route
+            path="/game"
+            element={<Game word={word} randomWord={randomWord} />}
+          />
         </Routes>
       </BrowserRouter>
       <Footer />

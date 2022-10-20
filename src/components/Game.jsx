@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Game = ({word}) => {
-
+const Game = ({ word, randomWord }) => {
   // generate random word
   const [letters, setLetters] = useState(Array(word.length).fill(null));
   const [chance, setChance] = useState(8);
@@ -12,7 +11,7 @@ const Game = ({word}) => {
   let checkLetters = letters;
 
   const splitWord = word.split("");
-  console.log(splitWord)
+  console.log(splitWord);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -42,7 +41,8 @@ const Game = ({word}) => {
   const handlePlayAgain = (e) => {
     e.preventDefault();
     setChance(8);
-    setLetters([""]);
+    randomWord();
+    setLetters(Array(word.length).fill(null));
     setIsLooser(false);
     setIsWinner(false);
     disabledAllButtons(false);
@@ -57,7 +57,7 @@ const Game = ({word}) => {
       setIsLooser(true);
       disabledAllButtons(true);
     }
-  }, [letters, chance]);
+  }, [letters, chance, word]);
 
   return (
     <main>
