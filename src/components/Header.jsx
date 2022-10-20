@@ -1,11 +1,8 @@
 const Header = ({ username }) => {
   return (
     <header>
-      <nav>
-        <ul>
-          <li>Hi {username}</li>
-        </ul>
-      </nav>
+      <h1>Hangman</h1>
+      {!username? "":<h2>{username}</h2>}
     </header>
   );
 };

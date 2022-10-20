@@ -8,9 +8,10 @@ import Footer from "./components/Footer";
 
 const App = () => {
   const [username, setUsername] = useState("");
-  function handleNameChange(e) {
+
+  const handlePlay = (e) => {
     e.preventDefault();
-    setUsername(e.target.value);
+    setUsername(document.getElementById("name").value)
   }
   return (
     <div className="App">
@@ -19,9 +20,9 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<Home handleNameChange={handleNameChange} />}
+            element={<Home handlePlay={handlePlay} />}
           />
-          <Route path="/game" username={username} element={<Game />} />
+          <Route path="/game" element={<Game />} />
         </Routes>
       </BrowserRouter>
       <Footer />
