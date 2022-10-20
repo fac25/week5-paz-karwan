@@ -11,23 +11,107 @@
   width: 80%;
   height: 90vh;
   margin: 5vh auto;
-  background-color: #1D3557;
+  background-color: #1d3557;
   border-radius: 5px;
 }
 
 header h1,
 header h2 {
   text-align: center;
-  color: #F1FAEE;
+  color: #f1faee;
 }
 header h1 {
   padding: 3rem 0;
 }
 
-main {
-  width: 400px;
-  height: 250px;
-  margin: 0 auto;
+.modal {
+  background: #a8dadc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 40vh;
+  margin: auto;
+  border: 5px solid #e63946;
+  border-radius: 1rem;
+}
+.modal > div {
+  text-align: center;
+}
+.modal > div > * + * {
+  margin-top: 1rem;
+}
+.modal button {
+  padding: 0.5rem 1rem;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.game-container {
+  color: #f1faee;
+}
+@media screen and (min-width: 768px) {
+  .game-container {
+    display: flex;
+    flex-direction: row;
+  }
+}
+.game-container > section {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .game-container > section {
+    width: 30%;
+  }
+}
+.game-container > div {
+  padding: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .game-container > div {
+    width: 70%;
+  }
+}
+
+.control-panel > :first-child {
+  display: none;
+}
+
+.keyboard-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.keyboard-layout button {
+  padding: 0.25rem 0.25rem;
+}
+.keyboard-layout > div > button + button {
+  margin-top: 0.25rem;
+  margin-left: 0.25rem;
+}
+
+.letters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.letter-placeholder {
+  display: inline-block;
+  border-bottom: 2px solid white;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.5rem;
 }
 
 footer p {
@@ -36,5 +120,5 @@ footer p {
   position: absolute;
   bottom: 2rem;
   text-align: center;
-  color: #F1FAEE;
+  color: #f1faee;
 }
