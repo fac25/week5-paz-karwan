@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import db from "./data.json";
 
@@ -10,21 +10,21 @@ import Footer from "./components/Footer";
 
 const App = () => {
   const data = db.words;
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(null);
   const [word, setWord] = useState("");
 
-  const random = Math.floor(Math.random() * data.length);
-
   const randomWord = () => {
+    const random = Math.floor(Math.random() * data.length);
     setWord(data[random].toUpperCase());
   };
 
   const handlePlay = (e) => {
     e.preventDefault();
+    const random = Math.floor(Math.random() * data.length);
     setUsername(document.getElementById("name").value);
     setWord(data[random].toUpperCase());
   };
-
+  useEffect(() => {}, [username]);
   return (
     <div className="main-container">
       <Header username={username} />
@@ -38,10 +38,15 @@ const App = () => {
             path="/game"
             element={<Game word={word} randomWord={randomWord} />}
           />
-          <Route path="*" element={<div className="error-page">
-            <h2>Oops! 404 Error</h2>
-            <h3>This page does not exist!</h3>
-          </div>}/>
+          <Route
+            path="*"
+            element={
+              <div className="error-page">
+                <h2>Oops! 404 Error</h2>
+                <h3>This page does not exist!</h3>
+              </div>
+            }
+          />
         </Routes>
       </BrowserRouter>
       <Footer />
