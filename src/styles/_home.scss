@@ -1,6 +1,16 @@
+@use 'variables';
+
 main {
-  // width: 400px;
-  // height: 250px;
-  // margin: 0 auto;
-  //
+  width: 400px;
+  height: 250px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  > *{
+    margin: 0.5rem 0;
+  }
+  label{
+    color: variables.$secondary-text;
+  }
 }

@@ -38,6 +38,10 @@ const App = () => {
             path="/game"
             element={<Game word={word} randomWord={randomWord} />}
           />
+          <Route path="*" element={<div className="error-page">
+            <h2>Oops! 404 Error</h2>
+            <h3>This page does not exist!</h3>
+          </div>}/>
         </Routes>
       </BrowserRouter>
       <Footer />

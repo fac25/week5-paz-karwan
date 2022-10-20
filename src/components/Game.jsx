@@ -11,7 +11,6 @@ const Game = ({ word, randomWord }) => {
   let checkLetters = letters;
 
   const splitWord = word.split("");
-  console.log(splitWord);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -48,6 +47,7 @@ const Game = ({ word, randomWord }) => {
     disabledAllButtons(false);
   };
   useEffect(() => {
+    randomWord();
     if (letters.every((letter) => letter)) {
       setIsWinner(true);
       disabledAllButtons(true);
