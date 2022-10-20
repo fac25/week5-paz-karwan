@@ -1,26 +1,65 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Game = () => {
-  const [word, setWord] = useState("HELLO");
-  const [letters, setLetters] = useState(new Array(word.length).fill(""));
+  const word = "HELLO"
+  const [letters, setLetters] = useState(Array(word.length).fill(null));
+  const [chance, setChance] = useState(8);
+  const [isWinner, setIsWinner] = useState(false);
+  const [isLoser, setIsLooser] = useState(false);
+
+  let checkLetters = letters;
 
   const splitWord = word.split("");
 
   const handleChange = (e) => {
     e.preventDefault();
 
-    splitWord.map((letter, index) => {
-      if (!letters[index] && letter === e.target.textContent ) {
-        setLetters([...letters, (letters[index] = e.target.textContent)]);
-      } else {
-        setLetters([...letters]);
+    e.target.disabled = true;
+
+    if (!word.includes(e.target.textContent) && chance > 0) {
+      setChance(chance - 1);
+    }
+
+    splitWord.filter((letter, index) => {
+      if (letter === e.target.textContent) {
+        checkLetters[index] = letter;
+        return setLetters([...checkLetters]);
       }
     });
   };
 
+  const disableAllButtons = () => {
+    const allButtons = document
+      .getElementById("keyboard")
+      .querySelectorAll("button");
+    allButtons.forEach((button) => {
+      button.disabled = true;
+    });
+  };
+
+  useEffect(() => {
+    if (letters.every((letter) => letter)) {
+      setIsWinner(true);
+      disableAllButtons();
+    }
+
+    if (chance === 0) {
+      setIsLooser(true);
+      disableAllButtons();
+    }
+  }, [letters, chance]);
+
   return (
     <main>
-      <section></section>
+      <section>
+        {isWinner ? (
+          <h3>You won!</h3>
+        ) : isLoser ? (
+          <h3>You lost!</h3>
+        ) : (
+          <p>You have {chance} tries left </p>
+        )}
+      </section>
 
       <div className="">
         <section className="letters">
@@ -32,38 +71,42 @@ const Game = () => {
             );
           })}
         </section>
-        <section className="keyboard-layout" onClick={handleChange}>
+        <section
+          className="keyboard-layout"
+          id="keyboard"
+          onClick={handleChange}
+        >
           <div className="row-1">
-            <span>Q</span>
-            <span>W</span>
-            <span>E</span>
-            <span>R</span>
-            <span>T</span>
-            <span>Y</span>
-            <span>U</span>
-            <span>I</span>
-            <span>O</span>
-            <span>P</span>
+            <button>Q</button>
+            <button>W</button>
+            <button>E</button>
+            <button>R</button>
+            <button>T</button>
+            <button>Y</button>
+            <button>U</button>
+            <button>I</button>
+            <button>O</button>
+            <button>P</button>
           </div>
           <div className="row-2">
-            <span>A</span>
-            <span>S</span>
-            <span>D</span>
-            <span>F</span>
-            <span>G</span>
-            <span>H</span>
-            <span>J</span>
-            <span>K</span>
-            <span>L</span>
+            <button>A</button>
+            <button>S</button>
+            <button>D</button>
+            <button>F</button>
+            <button>G</button>
+            <button>H</button>
+            <button>J</button>
+            <button>K</button>
+            <button>L</button>
           </div>
           <div className="row-3">
-            <span>Z</span>
-            <span>X</span>
-            <span>C</span>
-            <span>V</span>
-            <span>B</span>
-            <span>N</span>
-            <span>M</span>
+            <button>Z</button>
+            <button>X</button>
+            <button>C</button>
+            <button>V</button>
+            <button>B</button>
+            <button>N</button>
+            <button>M</button>
           </div>
         </section>
       </div>
