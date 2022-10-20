@@ -1,0 +1,11 @@
+@use 'variables';
+header {
+  h1,
+  h2 {
+    text-align: center;
+    color: variables.$secondary-text;
+  }
+  h1{
+    padding: 3rem 0;
+  }
+}
